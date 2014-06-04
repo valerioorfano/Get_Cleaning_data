@@ -12,26 +12,26 @@ We suppose that the content of the above zip file is downloaded and stored below
 * **5.	Creates a second, independent tidy data set with the average of each variable for each activity and each subject.**
 
 ####Belowe the description of the run_analysis.R script
-Some variables are initialized to the proper folder and file names.
-dataDir <- "UCI HAR Dataset"
-trainDir <-"train"
-testDir <- "test"
-trainFiles <- c("X_train.txt", "subject_train.txt", "y_train.txt")
-testFiles<- c("X_test.txt", "subject_test.txt", "y_test.txt")
-genFiles<-c("activity_labels.txt", "features.txt")
+*Some variables are initialized to the proper folder and file names.*
+	dataDir <- "UCI HAR Dataset"
+	trainDir <-"train"
+	testDir <- "test"
+	trainFiles <- c("X_train.txt", "subject_train.txt", "y_train.txt")
+	testFiles<- c("X_test.txt", "subject_test.txt", "y_test.txt")
+	genFiles<-c("activity_labels.txt", "features.txt")
 
-**Checkout function: It is used to verify that all the files are in the proper folders.**
+*Checkout function: It is used to verify that all the files are in the proper folders.*
 
 
-checkout<-function(dataDir,subDataDir,dataFiles){
-	for (i in 1: length(dataFiles)){
-		if (!(file.exists(file.path(dataDir,subDataDir,dataFiles[i])))) {
-			print(file.exists(file.path(dataDir,subDataDir,dataFiles[i])))
-			stop("File: ", file.path(dataDir,subDatabDir,dataFiles[i]), " - has not been found. Please check the file exists.")	
+	checkout<-function(dataDir,subDataDir,dataFiles){
+		for (i in 1: length(dataFiles)){
+			if (!(file.exists(file.path(dataDir,subDataDir,dataFiles[i])))) {
+				print(file.exists(file.path(dataDir,subDataDir,dataFiles[i])))
+				stop("File: ", file.path(dataDir,subDatabDir,dataFiles[i]), " - has not been found. Please check the file exists.")	
+			}
 		}
-}
 
-**checkout is invoked 3 times, one for each type of files(train,test,generic)**
+*checkout is invoked 3 times, one for each type of files(train,test,generic)*
 
 	checkout(dataDir,trainDir,trainFiles)
 	checkout(dataDir,testDir,testFiles)
