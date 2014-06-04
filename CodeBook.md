@@ -15,11 +15,11 @@ These signals were used to estimate variables of the feature vector for each pat
 
 
 ####Data transformations:
-**Merged the training and the test sets to create one data set.
-**Extracted only the measurements on the mean and standard deviation for each measurement. 
-**Used descriptive activity names to name the activities in the data set
-**Labeled the data set with descriptive names
-**Meanings of the variables = the average of each variable for each activity and each subject. 
+**Merged the training and the test sets to create one data set.**
+**Extracted only the measurements on the mean and standard deviation for each measurement.** 
+**Used descriptive activity names to name the activities in the data set**
+**Labeled the data set with descriptive names**
+**Meanings of the variables = the average of each variable for each activity and each subject.** 
 
 ####Final dataframe columns:
 
