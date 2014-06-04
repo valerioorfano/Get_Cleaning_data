@@ -60,7 +60,7 @@ The first 2 columns of the “data” df containing activity type and subjectid 
  
 measure<-data[,c(c(1:2),grep(".*mean|std.*",features$V2)+2)]
 
-* ** 3	Uses descriptive activity names to name the activities in the data set. **
+* **3	Uses descriptive activity names to name the activities in the data set. **
 
 measure$activity column is converted from integer type to factor, and its level is changed according to activity df value.
 
