@@ -88,7 +88,7 @@ final$measuredfeature<-activitynames
 
 Replicate function has been left as much generic as possible: activitynames<-rep( names(measure[,3:(length(names(measure)))]),nrow(activity) * length(c(unique(subjecttrain$subjectid),unique(subjecttest$subjectid))))
 
-* 		**5.1  The final dataframe is saved into a text file**
+* **5.1  The final dataframe is saved into a text file**
 
 		  write.table(final, "final.txt",row.names=FALSE)
 
