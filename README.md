@@ -21,6 +21,8 @@ testFiles<- c("X_test.txt", "subject_test.txt", "y_test.txt")
 genFiles<-c("activity_labels.txt", "features.txt")
 
 Checkout function: It is used to verify that all the files are in the proper folders.
+
+
 checkout<-function(dataDir,subDataDir,dataFiles){
 	for (i in 1: length(dataFiles)){
 		if (!(file.exists(file.path(dataDir,subDataDir,dataFiles[i])))) {
