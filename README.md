@@ -57,7 +57,7 @@ stop("File: ", file.path(dataDir,subDatabDir,dataFiles[i]), " - has not been fou
 	test<-cbind(ytest,subjecttest,xtest)
 
 * **1	Merges the training and the test sets to create one data set.**
-*train and test data are merged together using rbind function*
+*Train and test data are merged together using rbind function*
 
 
 	data<-rbind(train,test)
