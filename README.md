@@ -20,7 +20,7 @@ trainFiles <- c("X_train.txt", "subject_train.txt", "y_train.txt")
 testFiles<- c("X_test.txt", "subject_test.txt", "y_test.txt")
 genFiles<-c("activity_labels.txt", "features.txt")
 
-Checkout function: It is used to verify that all the files are in the proper folders.
+**Checkout function: It is used to verify that all the files are in the proper folders.**
 
 
 checkout<-function(dataDir,subDataDir,dataFiles){
@@ -31,15 +31,16 @@ checkout<-function(dataDir,subDataDir,dataFiles){
 		}
 }
 
-checkout is invoked 3 times, one for each type of files(train,test,generic)
-checkout(dataDir,trainDir,trainFiles)
-checkout(dataDir,testDir,testFiles)
-checkout(dataDir,"",genFiles)
+**checkout is invoked 3 times, one for each type of files(train,test,generic)**
+
+	checkout(dataDir,trainDir,trainFiles)
+	checkout(dataDir,testDir,testFiles)
+	checkout(dataDir,"",genFiles)
 
 If any file/folder is missing then the execution of the script is interrupted with an error message. 
 stop("File: ", file.path(dataDir,subDatabDir,dataFiles[i]), " - has not been found. Please check the file exists.")	
 
-Otherwise it proceeds with the script execution, initializing the variables that will contain all the input file contents. 
+**Otherwise it proceeds with the script execution, initializing the variables that will contain all the input file contents.** 
 
 
 	activity<-read.table("UCI HAR Dataset/activity_labels.txt",header=FALSE,stringsAsFactors=FALSE)
@@ -55,22 +56,22 @@ Otherwise it proceeds with the script execution, initializing the variables that
 	test<-cbind(ytest,subjecttest,xtest)
 
 * **1	Merges the training and the test sets to create one data set.**
-train and test data are merged together using rbind function
+**train and test data are merged together using rbind function**
 
 
 	data<-rbind(train,test)
 	
 * **2	Extracts only the measurements on the mean and standard deviation for each measurement. **
 
-The “features” dataframe contains all the activity names. It is used to search all the activity columns containing word “mean” and/or “std” in their name.
-The first 2 columns of the “data” df containing activity type and subjectid are left unchanged. 
+**The “features” dataframe contains all the activity names. It is used to search all the activity columns containing word “mean” and/or “std” in their name.
+The first 2 columns of the “data” df containing activity type and subjectid are left unchanged.**
  
  
 	measure<-data[,c(c(1:2),grep(".*mean|std.*",features$V2)+2)]
 
 * **3	Uses descriptive activity names to name the activities in the data set.**
 
-measure$activity column is converted from integer type to factor, and its level is changed according to activity df value.
+**measure$activity column is converted from integer type to factor, and its level is changed according to activity df value.**
 
 
 	measure$activity<-as.factor(measure$activity)
@@ -78,7 +79,7 @@ measure$activity column is converted from integer type to factor, and its level 
 
 * **4	Appropriately labels the data set with descriptive activity names.**
 
-The column name containing “mean” and “std “are lightly modified removing meaningless charcter like “()”,”-“,”.” etc..Again the first columns “activity” and “subjectid” are left unchanged.
+**The column name containing “mean” and “std “are lightly modified removing meaningless charcter like “()”,”-“,”.” etc..Again the first columns “activity” and “subjectid” are left unchanged.**
 
 
 	newnames<-grep(".*mean|std.*",features$V2,value=TRUE)
@@ -89,7 +90,7 @@ The column name containing “mean” and “std “are lightly modified removin
 
 * **5	Creates a second, independent tidy data set with the average of each variable for each activity and each subject.**
 
-The function ddply calculates all the column means of the “measure” dataframe grouped by “activity” and “subjectid” columns. To properly associate the colmean to the column name a new column called “measurefeature” is added to the “measure” dataframe. This column contains the column name replicated  6(activity) * 30(subjectid) = 180 times. 
+**The function ddply calculates all the column means of the “measure” dataframe grouped by “activity” and “subjectid” columns. To properly associate the colmean to the column name a new column called “measurefeature” is added to the “measure” dataframe. This column contains the column name replicated  6(activity) * 30(subjectid) = 180 times.**
 
 
 	final<-ddply(measure, c(.(activity),.(subjectid)),summarize,Means=colMeans(measure[3:(length(names(measure)))]))
@@ -97,7 +98,7 @@ The function ddply calculates all the column means of the “measure” datafram
 	nrow(activity)*length(c(unique(subjecttrain$subjectid),unique(subjecttest$subjectid))))
 	final$measuredfeature<-activitynames
 
-Replicate function has been left as much generic as possible: 
+**Replicate function has been left as much generic as possible:**
 
 
 	activitynames<-rep( names(measure[,3:(length(names(measure)))]),nrow(activity)*
