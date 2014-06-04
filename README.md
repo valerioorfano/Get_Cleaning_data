@@ -82,11 +82,12 @@ names(measure)<-c("activity","subjectid", newnames)
 The function ddply calculates all the column means of the “measure” dataframe grouped by “activity” and “subjectid” columns. To properly associate the colmean to the column name a new column called “measurefeature” is added to the “measure” dataframe. This column contains the column name replicated  6(activity) * 30(subjectid) = 180 times. 
 
 
-final<-ddply(measure, c(.(activity),.(subjectid)),summarize,Means=colMeans(measure[3:(length(names(measure)))]))
-activitynames<-rep( names(measure[,3:(length(names(measure)))]),nrow(activity)*length(c(unique(subjecttrain$subjectid),unique(subjecttest$subjectid))))
-final$measuredfeature<-activitynames
+	final<-ddply(measure, c(.(activity),.(subjectid)),summarize,Means=colMeans(measure[3:(length(names(measure)))]))
+	activitynames<-rep( names(measure[,3:(length(names(measure)))]),nrow(activity)*length(c(unique(subjecttrain$subj		ectid),unique(subjecttest$subjectid))))
+	final$measuredfeature<-activitynames
 
-Replicate function has been left as much generic as possible: activitynames<-rep( names(measure[,3:(length(names(measure)))]),nrow(activity) * length(c(unique(subjecttrain$subjectid),unique(subjecttest$subjectid))))
+Replicate function has been left as much generic as possible: 
+	activitynames<-rep( names(measure[,3:(length(names(measure)))]),nrow(activity) * 	length(c(unique(subjecttrain$subjectid),unique(subjecttest$subjectid))))
 
 * **5.1  The final dataframe is saved into a text file**
 
