@@ -83,14 +83,16 @@ The function ddply calculates all the column means of the “measure” datafram
 
 
 	final<-ddply(measure, c(.(activity),.(subjectid)),summarize,Means=colMeans(measure[3:(length(names(measure)))]))
-	activitynames<-rep( names(measure[,3:(length(names(measure)))]),nrow(activity)*length(c(unique(subjecttrain$subj	ectid),unique(subjecttest$subjectid))))
+	activitynames<-rep( names(measure[,3:(length(names(measure)))]),
+	nrow(activity)*length(c(unique(subjecttrain$subjectid),unique(subjecttest$subjectid))))
 	final$measuredfeature<-activitynames
 
 Replicate function has been left as much generic as possible: 
-	activitynames<-rep( names(measure[,3:(length(names(measure)))]),nrow(activity)*	length(c(unique(subjecttrain$subjectid),unique(subjecttest$subjectid))))
+	activitynames<-rep( names(measure[,3:(length(names(measure)))]),nrow(activity)*
+	length(c(unique(subjecttrain$subjectid),unique(subjecttest$subjectid))))
 
 * **5.1  The final dataframe is saved into a text file**
 
-		  write.table(final, "final.txt",row.names=FALSE)
+	write.table(final, "final.txt",row.names=FALSE)
 
 
